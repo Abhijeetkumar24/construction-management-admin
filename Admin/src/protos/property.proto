@@ -1,0 +1,46 @@
+syntax = 'proto3';
+
+package propertyPackage;
+
+
+import "google/protobuf/empty.proto";
+
+service Property{
+    rpc GetProperty(PropertyId) returns (PropertyDetails) {};
+    rpc GetAllProperty(google.protobuf.Empty) returns (PropertyList) {};
+}
+
+  
+message PropertyId {
+    string id = 1;
+}
+
+message Flat {
+    string flatNumber = 1;
+    string bookedBy = 2;
+    string status = 3;
+}
+
+message MaterialCost {
+    string material = 1;
+    double cost = 2;
+}
+
+
+message PropertyDetails {
+    string adminId = 1;
+    string location = 2;
+    string type = 3;
+    string specifications = 4;
+    string status = 5;
+    repeated string workers = 6;
+    repeated Flat flats = 7;
+    repeated MaterialCost materialCost = 8;
+    string stripeId = 9;
+
+}
+
+message PropertyList {
+    repeated PropertyDetails properties = 1;
+}
+
